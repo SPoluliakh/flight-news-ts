@@ -1,4 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { IPosts } from '../../interfases/interfase.posts';
+
+interface IQueryObj {
+  skip: Number;
+  keyword: string;
+}
 
 export const articlesApi = createApi({
   reducerPath: 'articles',
@@ -7,16 +13,15 @@ export const articlesApi = createApi({
   }),
   tagTypes: ['articles'],
   endpoints: builder => ({
-    fetchArticles: builder.query({
-      query: ({ skip = 0, keyword = '' }) =>
+    fetchArticles: builder.query<IPosts[], IQueryObj>({
+      query: ({ skip = 0, keyword = '' }: IQueryObj) =>
         `/v3/articles?_limit=20&_start=${skip}&title_contains=${keyword}`,
-
       providesTags: ['articles'],
     }),
-    fetchArticlesById: builder.query({
-      query: id => `/v3/articles/${id}`,
+    fetchArticlesById: builder.query<IPosts, string>({
+      query: (id: string) => `/v3/articles/${id}`,
+      providesTags: ['articles'],
     }),
-    providesTags: ['articles'],
   }),
 });
 

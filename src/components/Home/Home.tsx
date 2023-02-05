@@ -1,5 +1,5 @@
-import { SearchBar } from 'components/SearchBar/SearchBar';
-import { ArticleList } from 'components/ArticleList/ArticleList';
+import { SearchBar } from '../SearchBar/SearchBar';
+import { ArticleList } from '../ArticleList/ArticleList';
 
 export const Home = () => {
   return (

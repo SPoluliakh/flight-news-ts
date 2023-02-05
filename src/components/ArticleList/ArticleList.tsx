@@ -1,10 +1,10 @@
 import { ArticleListItem } from './ArticleListItem/ArticleListItem';
-import { useFetchArticlesQuery } from 'Redux/Articles/articlesOperations';
-import { Pagination } from 'components/pagination/Pagination';
+import { useFetchArticlesQuery } from '../../Redux/Articles/articlesOperations';
+import { Pagination } from '../pagination/Pagination';
 import * as SC from './ArticleList.styled';
-import { useGetSearchParams } from 'Huks/GetSearchParams';
+import { useGetSearchParams } from '../../Huks/GetSearchParams';
 import Spiner from '../Spiner/Spiner';
-import { NoInfo } from 'components/NoInfo/NoInfo';
+import { NoInfo } from '../NoInfo/NoInfo';
 
 export const ArticleList = () => {
   const { pageNumber, keyword } = useGetSearchParams();
@@ -17,7 +17,8 @@ export const ArticleList = () => {
     }
   );
 
-  if (!data) return;
+  if (!data) return null;
+
   return (
     <>
       {isFetching && <Spiner />}

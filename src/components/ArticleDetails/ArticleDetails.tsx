@@ -1,12 +1,16 @@
 import { useLocation, useParams } from 'react-router-dom';
 import { FcLeft } from 'react-icons/fc';
 import { CardContent } from '@mui/material';
-import { useFetchArticlesByIdQuery } from 'Redux/Articles/articlesOperations';
+import { useFetchArticlesByIdQuery } from '../../Redux/Articles/articlesOperations';
 import * as SC from './ArticleDetails.styled';
-import { CustomLink } from 'components/CustomLink/CustomLink';
+import { CustomLink } from '../CustomLink/CustomLink';
+
+type QuizParams = {
+  id: string;
+};
 
 export const ArticleDetails = () => {
-  const { id } = useParams();
+  const { id = '' } = useParams<QuizParams>();
   const location = useLocation();
   const { data } = useFetchArticlesByIdQuery(id);
 

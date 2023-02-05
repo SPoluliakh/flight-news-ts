@@ -1,7 +1,7 @@
 import { AppBar, Toolbar } from '@mui/material';
-import { pages } from 'Utils/pages';
+import { pages } from '../../Utils/pages';
 import { FcKindle } from 'react-icons/fc';
-import { CustomLink } from 'components/CustomLink/CustomLink';
+import { CustomLink } from '../CustomLink/CustomLink';
 
 export const Navigation = () => {
   return (

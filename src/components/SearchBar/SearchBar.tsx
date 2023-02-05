@@ -1,13 +1,13 @@
 import { useMemo, useRef } from 'react';
-import { debounce } from 'debounce';
+import { debounce } from 'ts-debounce';
 import { TextField, Toolbar } from '@mui/material';
 import { BsXLg } from 'react-icons/bs';
-import { useGetSearchParams } from 'Huks/GetSearchParams';
+import { useGetSearchParams } from '../../Huks/GetSearchParams';
 import * as SC from './SearchBar.styled';
-import { useState } from 'react';
+import { useState, ChangeEvent } from 'react';
 
 export const SearchBar = () => {
-  const filterArea = useRef();
+  const filterArea = useRef<HTMLInputElement | null>(null);
   const { keyword, setSearchParams } = useGetSearchParams();
   const [query, setQuery] = useState(keyword);
 
@@ -15,21 +15,21 @@ export const SearchBar = () => {
     return debounce(
       value =>
         setSearchParams(
-          value !== '' ? { page: 1, keyword: value } : { page: 1 }
+          value !== '' ? { page: '1', keyword: value } : { page: '1' }
         ),
       500
     );
   }, [setSearchParams]);
 
-  const handleFilterChange = evt => {
-    const { value } = evt.target;
+  const handleFilterChange = (evt: ChangeEvent<HTMLInputElement>) => {
+    const { value } = evt.target as HTMLInputElement;
     setQuery(value);
     handleSearchParamsChange(value);
   };
   const handleFilterClear = () => {
     setQuery('');
-    setSearchParams({ page: 1 });
-    filterArea.current.focus();
+    setSearchParams({ page: '1' });
+    filterArea.current!.focus();
   };
 
   return (

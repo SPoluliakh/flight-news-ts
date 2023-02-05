@@ -1,4 +1,13 @@
-export const theme = Object.freeze({
+interface IThemeInner {
+  [key: string]: number | string;
+}
+type TSpace = number[];
+
+interface ITheme {
+  [key: string]: IThemeInner | TSpace;
+}
+
+export const theme: ITheme = Object.freeze({
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
   fontSizes: {
     xs: 12,

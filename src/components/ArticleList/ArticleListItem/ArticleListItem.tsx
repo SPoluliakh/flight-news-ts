@@ -1,23 +1,28 @@
 import { useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import * as SC from './ArticleListItem.styled';
-import { Hightlight } from 'components/Hightlight/Hightlight';
-import { useGetSearchParams } from 'Huks/GetSearchParams';
-import { CustomLink } from 'components/CustomLink/CustomLink';
+import { Hightlight } from '../../Hightlight/Hightlight';
+import { useGetSearchParams } from '../../../Huks/GetSearchParams';
+import { CustomLink } from '../../CustomLink/CustomLink';
+import { IPosts } from '../../../interfases/interfase.posts';
 
-export const ArticleListItem = ({ article }) => {
+interface IArticleType {
+  key: number;
+  article: IPosts;
+}
+
+export const ArticleListItem = ({ article }: IArticleType) => {
   const { id, imageUrl, updatedAt, title, summary } = article;
   const location = useLocation();
   const { keyword } = useGetSearchParams();
 
-  const dateConverter = useCallback(value => {
+  const dateConverter = useCallback((value: string) => {
     const data = new Date(value.slice(0, 10));
     return data.toDateString().slice(3);
   }, []);
 
   const ChangeColor = useCallback(
-    str => {
+    (str: string) => {
       return <Hightlight filter={keyword} str={str} />;
     },
     [keyword]
@@ -45,14 +50,4 @@ export const ArticleListItem = ({ article }) => {
       </SC.Wrap>
     </SC.Item>
   );
-};
-
-ArticleListItem.propTypes = {
-  article: PropTypes.shape({
-    id: PropTypes.number,
-    imageUrl: PropTypes.string,
-    updatedAt: PropTypes.string,
-    title: PropTypes.string,
-    summary: PropTypes.string,
-  }),
 };

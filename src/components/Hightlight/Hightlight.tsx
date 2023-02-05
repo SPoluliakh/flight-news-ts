@@ -1,7 +1,11 @@
 import { Fragment } from 'react';
-import PropTypes from 'prop-types';
 
-export const Hightlight = ({ filter, str }) => {
+interface IHighlate {
+  filter: string;
+  str: string;
+}
+
+export const Hightlight = ({ filter, str }: IHighlate): any => {
   if (!filter) {
     return str;
   }
@@ -21,9 +25,4 @@ export const Hightlight = ({ filter, str }) => {
     });
   }
   return str;
-};
-
-Hightlight.propTypes = {
-  str: PropTypes.string,
-  filter: PropTypes.string,
 };

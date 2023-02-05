@@ -1,25 +1,30 @@
 import { Button } from '@mui/material';
-import { useGetSearchParams } from 'Huks/GetSearchParams';
-import PropTypes from 'prop-types';
+import { useGetSearchParams } from '../../Huks/GetSearchParams';
 import * as SC from './Pagination.styled';
-import { windowScroll } from 'Utils/smoothScroll';
+import { windowScroll } from '../../Utils/smoothScroll';
+import { MouseEvent } from 'react';
 
-export const Pagination = ({ disabled = 0 }) => {
+interface IProps {
+  disabled: number;
+}
+
+export const Pagination = ({ disabled = 0 }: IProps) => {
   const { pageNumber, keyword, setSearchParams } = useGetSearchParams();
 
-  const pageCount = evt => {
-    const { name } = evt.target;
+  const pageCount = (evt: MouseEvent<HTMLButtonElement>) => {
+    const { name } = evt.target as HTMLButtonElement;
     name === 'next'
       ? setSearchParams(
           keyword !== ''
-            ? { page: pageNumber + 1, keyword }
-            : { page: pageNumber + 1 }
+            ? { page: (pageNumber + 1).toString(), keyword }
+            : { page: (pageNumber + 1).toString() }
         )
       : setSearchParams(
           keyword !== ''
-            ? { page: pageNumber - 1, keyword }
-            : { page: pageNumber - 1 }
+            ? { page: (pageNumber - 1).toString(), keyword }
+            : { page: (pageNumber - 1).toString() }
         );
+
     windowScroll();
   };
 
@@ -48,8 +53,4 @@ export const Pagination = ({ disabled = 0 }) => {
       </SC.Wrap>
     </>
   );
-};
-
-Pagination.propTypes = {
-  disabled: PropTypes.number,
 };

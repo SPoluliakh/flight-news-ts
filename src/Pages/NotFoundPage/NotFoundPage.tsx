@@ -1,5 +1,5 @@
-import { NoInfo } from 'components/NoInfo/NoInfo';
-import { CustomLink } from 'components/CustomLink/CustomLink';
+import { NoInfo } from '../../components/NoInfo/NoInfo';
+import { CustomLink } from '../../components/CustomLink/CustomLink';
 import * as SC from './NotFoundPage.styled';
 
 export const NotFoundPage = () => {

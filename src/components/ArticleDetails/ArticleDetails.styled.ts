@@ -21,7 +21,7 @@ export const InnerWrap = styled(Card)`
   margin-bottom: ${p => p.theme.space[4]}px;
 `;
 
-export const Image = styled(CardMedia)`
+export const Image = styled(CardMedia)<{ component: string; alt: string }>`
   height: 240px;
 `;
 
