@@ -13,7 +13,7 @@ export const SearchBar = () => {
 
   const handleSearchParamsChange = useMemo(() => {
     return debounce(
-      value =>
+      (value: string) =>
         setSearchParams(
           value !== '' ? { page: '1', keyword: value } : { page: '1' }
         ),
