@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { IPosts } from '../../interfases/interfase.posts';
 
 interface IQueryObj {
-  skip: Number;
+  skip: number;
   keyword: string;
 }
 
